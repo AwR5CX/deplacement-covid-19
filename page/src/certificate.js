@@ -103,7 +103,10 @@ async function generatePdf(profile, reasons) {
     `Prenom: ${firstname}`,
     `Naissance: ${birthday} a ${lieunaissance}`,
     `Adresse: ${address} ${zipcode} ${town}`,
-    `Sortie: ${datesortie} a ${releaseHours}h${releaseMinutes}`,
+    `Sortie: ${datesortie.replace(
+      /-/g,
+      '/'
+    )} a ${releaseHours}h${releaseMinutes}`,
     `Motifs: ${reasons}`,
   ].join('; ')
 
