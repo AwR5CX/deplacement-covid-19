@@ -30,20 +30,20 @@ const generateQR = async (text) => {
   }
 }
 
-function pad(str) {
+function pad (str) {
   return String(str).padStart(2, '0')
 }
 
-function saveProfile() {
+function saveProfile () {
   for (const field of $$('#form-profile input')) {
     if (
       field.id === 'field-datesortie' ||
       field.id === 'field-dategeneration'
     ) {
-      var dateSortie = field.value.split('-')
+      const dateSortie = field.value.split('-')
       localStorage.setItem(
         field.id.substring('field-'.length),
-        `${dateSortie[2]}-${dateSortie[1]}-${dateSortie[0]}`
+        `${dateSortie[2]}-${dateSortie[1]}-${dateSortie[0]}`,
       )
     } else {
       localStorage.setItem(field.id.substring('field-'.length), field.value)
@@ -51,7 +51,7 @@ function saveProfile() {
   }
 }
 
-function getProfile() {
+function getProfile () {
   const fields = {}
   for (let i = 0; i < localStorage.length; i++) {
     const name = localStorage.key(i)
@@ -60,7 +60,7 @@ function getProfile() {
   return fields
 }
 
-function idealFontSize(font, text, maxWidth, minSize, defaultSize) {
+function idealFontSize (font, text, maxWidth, minSize, defaultSize) {
   let currentSize = defaultSize
   let textWidth = font.widthOfTextAtSize(text, defaultSize)
 
@@ -71,7 +71,7 @@ function idealFontSize(font, text, maxWidth, minSize, defaultSize) {
   return textWidth > maxWidth ? null : currentSize
 }
 
-async function generatePdf(profile, reasons) {
+async function generatePdf (profile, reasons) {
   // const creationDate = new Date().toLocaleDateString('fr-FR')
   // const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', 'h')
 
@@ -105,7 +105,7 @@ async function generatePdf(profile, reasons) {
     `Adresse: ${address} ${zipcode} ${town}`,
     `Sortie: ${datesortie.replace(
       /-/g,
-      '/'
+      '/',
     )} a ${releaseHours}h${releaseMinutes}`,
     `Motifs: ${reasons}`,
   ].join('; ')
@@ -151,7 +151,7 @@ async function generatePdf(profile, reasons) {
   if (!locationSize) {
     alert(
       'Le nom de la ville risque de ne pas être affiché correctement en raison de sa longueur. ' +
-        'Essayez d\'utiliser des abréviations ("Saint" en "St." par exemple) quand cela est possible.'
+        'Essayez d\'utiliser des abréviations ("Saint" en "St." par exemple) quand cela est possible.',
     )
     locationSize = 7
   }
@@ -194,7 +194,7 @@ async function generatePdf(profile, reasons) {
   return new Blob([pdfBytes], { type: 'application/pdf' })
 }
 
-function downloadBlob(blob, fileName) {
+function downloadBlob (blob, fileName) {
   const link = document.createElement('a')
   const url = URL.createObjectURL(blob)
   link.href = url
@@ -203,7 +203,7 @@ function downloadBlob(blob, fileName) {
   link.click()
 }
 
-function getAndSaveReasons() {
+function getAndSaveReasons () {
   const values = $$('input[name="field-reason"]:checked')
     .map((x) => x.value)
     .join('-')
@@ -212,7 +212,7 @@ function getAndSaveReasons() {
 }
 
 // see: https://stackoverflow.com/a/32348687/1513045
-function isFacebookBrowser() {
+function isFacebookBrowser () {
   const ua = navigator.userAgent || navigator.vendor || window.opera
   return ua.includes('FBAN') || ua.includes('FBAV')
 }
@@ -224,7 +224,7 @@ if (isFacebookBrowser()) {
   alertFacebookElt.classList.remove('d-none')
 }
 
-function addSlash() {
+function addSlash () {
   const birthdayInput = $('#field-birthday')
   birthdayInput.value = birthdayInput.value
     .replace(/^(\d{2})$/g, '$1/')
@@ -246,7 +246,7 @@ const snackbar = $('#snackbar')
 
 $('#btn-delete-localstorage').addEventListener(
   'click',
-  () => localStorage.clear() || window.location.reload()
+  () => localStorage.clear() || window.location.reload(),
 )
 
 $('#generate-btn').addEventListener('click', async (event) => {
@@ -334,7 +334,7 @@ const inputFields = {
       // sets the time at which you left to a multiple of 5
       const roundedTimestamp =
         Math.round(
-          (new Date().getTime() / 60000 - HARDCODED_SORTIE_OFFSET) / 5
+          (new Date().getTime() / 60000 - HARDCODED_SORTIE_OFFSET) / 5,
         ) *
         5 *
         60000
@@ -361,7 +361,7 @@ const inputFields = {
       const [minOffset, maxOffset] = [1, 6]
       const randomOffset = Math.random() * maxOffset + minOffset
       const generationTime = new Date(
-        new Date().getTime() - (HARDCODED_SORTIE_OFFSET + randomOffset) * 60000
+        new Date().getTime() - (HARDCODED_SORTIE_OFFSET + randomOffset) * 60000,
       )
 
       return `${stringified(generationTime).hours}:${
