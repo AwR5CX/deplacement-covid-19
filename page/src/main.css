@@ -22,6 +22,7 @@ label {
   max-width: 600px;
 }
 
+
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
   h1 {
@@ -45,12 +46,33 @@ h1.flex.flex-wrap {
   flex-wrap: wrap;
 }
 
+@media (prefers-color-scheme: dark) {
+  h1.flex.flex-wrap {
+    border: 1px solid white;
+  }
+}
+
 h2 {
   font-size: large;
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  h2 {
+    color: white;
+  }
 }
 
 footer {
   margin-top: 40px;
+  background: white;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  footer {
+    background: #222;
+  }
 }
 
 canvas {
@@ -60,6 +82,23 @@ canvas {
 
 a {
   color: #000191;
+  text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+  a {
+    color: #A3A3FF;
+  }
+}
+
+p {
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  p {
+    color: white;
+  }
 }
 
 .wrapper {
@@ -74,6 +113,32 @@ a {
 #form-profile .form-check-label {
   /* font-weight: 400;
   transform: translateY(-2px); */
+}
+
+@media (prefers-color-scheme: dark) {
+  #form-profile .form-check-label {
+    color: #ddd;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  label {
+    color: white;
+  }
+
+  .form-control::placeholder {
+    color: #aaa;
+  }
+
+  input, select, textarea, .form-control, .form-control:focus {
+    background: #333;
+    color: white;
+    border: 1px solid white;
+  }
+
+  .form-control:focus {
+    background: #555;
+  }
 }
 
 #form-generate .form-check {
@@ -158,6 +223,12 @@ input:valid + span:after {
   background-color: #000191;
 }
 
+@media (prefers-color-scheme: dark) {
+  .covid-title {
+    background: #2929ff;
+  }
+}
+
 @media (min-width: 992px) {
   .covid-title {
     flex-grow: 0;
@@ -189,7 +260,7 @@ button {
   padding: 0.9em;
   font-size: 1.2em;
   font-weight: bold;
-  color: #ffffff;
+  color: white;
   background-color: #000191;
   border-radius: 0.5em;
 }
@@ -221,6 +292,12 @@ button {
   color: #000191;
 }
 
+@media (prefers-color-scheme: dark) {
+  .github-link {
+    color: #A3A3FF;
+  }
+}
+
 .github-link:hover {
   text-decoration: underline;
 }
@@ -243,6 +320,17 @@ button {
 .footer-links {
   margin: 0 auto;
   max-width: 500px;
+  background: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+  .main-footer {
+    background: #444;
+  }
+
+  .footer-links {
+      background: #444;
+  }
 }
 
 .footer-line {
@@ -254,7 +342,7 @@ button {
 
 .footer-link:hover {
   text-decoration: underline;
-  color: #ffffff;
+  color: #0a81ff;
 }
 
 .footer-link:focus {
@@ -361,4 +449,16 @@ button {
   bottom: 1em;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.alert-info {
+  color: #030494;
+  background-color: #caf8ff;
+  border-color: #caf8ff;
+}
+
+.btn-info {
+  color: #fff;
+  background-color: #030494;
+  border-color: #030494;
 }
